@@ -4,46 +4,54 @@
   @fadeIn
   class="flex flex-1 flex-col items-center justify-center space-y-6 p-6"
 >
-  <div class="mb-2 flex w-full justify-between">
-    <span>Question {{ currentIndex + 1 }} / {{ questions.length }}</span>
-    <span
-      >{{
-        ((currentIndex + 1) / questions.length) * 100 | number: "1.0-0"
-      }}%</span
-    >
-    <p>Score: {{ score }} / {{ questions.length }}</p>
+  <div class="mb-2 flex w-full items-center justify-between">
+    <span>Question {{ currentIndex + 1 }} / {{ totalQuestions }}</span>
+    <span>{{ getProgress() | number: "1.0-0" }}%</span>
+    <span>Score: {{ score }} / {{ totalQuestions }}</span>
   </div>
+
   <p-progressbar
     mode="determinate"
-    [value]="((currentIndex + 1) / questions.length) * 100"
+    [value]="getProgress()"
     [showValue]="true"
     styleClass="w-full mb-4"
-  />
-  <h2>{{ currentQuestion.question }}</h2>
+  ></p-progressbar>
+
+  <h2 class="text-xl font-semibold">{{ currentQuestion.question }}</h2>
+
   <p-image
     *ngIf="currentQuestion.image"
     [src]="currentQuestion.image"
     [alt]="'Illustration – ' + currentQuestion.question"
     width="500"
-  />
-  <ul class="grid grid-cols-2 gap-8">
-    <li *ngFor="let c of currentQuestion.choices" class="w-full">
-      <p-button
-        [label]="c"
-        (click)="answer(c)"
-        (keydown.enter)="answer(c)"
-        (keydown.space)="answer(c)"
-        [disabled]="!!selectedChoice"
-        [styleClass]="
-          selectedChoice === c
-            ? c === currentQuestion.answer
-              ? 'p-button-success w-full'
-              : 'p-button-danger w-full'
-            : 'w-full'
-        "
-      />
-    </li>
-  </ul>
+    class="mb-4"
+  ></p-image>
+
+  <div class="w-full">
+    <p-select
+      [options]="choiceOptions"
+      [(ngModel)]="selectedChoice"
+      (onChange)="answer($event.value)"
+      optionLabel="label"
+      placeholder="Choisissez une réponse"
+      class="w-full"
+      [disabled]="!!selectedChoice"
+      aria-label="Choisissez votre réponse"
+    ></p-select>
+  </div>
+
+  <div class="mt-4 flex w-full items-center justify-between">
+    <div class="mr-2 flex-1">
+      <p-progressbar
+        mode="determinate"
+        [value]="((currentIndex + 1) / questions.length) * 100"
+        [showValue]="false"
+        styleClass="w-full"
+      ></p-progressbar>
+    </div>
+    <div>{{ timerValue }}s</div>
+  </div>
+
   <p-button
     label="Suivant →"
     (click)="next()"
@@ -51,11 +59,14 @@
     (keydown.space)="next()"
     [disabled]="!selectedChoice"
     class="mt-4"
-  />
+  ></p-button>
 </div>
-<div *ngIf="showResult">
-  <h2>Résultat: {{ score }} / {{ questions.length }}</h2>
-  <p>{{ getFeedbackMessage() }}</p>
+
+<div *ngIf="showResult" class="p-6 text-center">
+  <h2 class="mb-4 text-2xl font-bold">
+    Résultat: {{ score }} / {{ totalQuestions }}
+  </h2>
+  <p class="mb-6">{{ getFeedbackMessage() }}</p>
   <p-button
     label="Rejouer"
     aria-label="Recommencer le quiz"
