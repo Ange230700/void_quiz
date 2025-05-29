@@ -1,0 +1,25 @@
+<!-- src\app\components\quiz\quiz.component.html -->
+<div *ngIf="!showResult">
+  <h2>{{ currentQuestion.question }}</h2>
+  <img
+    *ngIf="currentQuestion.image"
+    [src]="currentQuestion.image"
+    [alt]="currentQuestion.question"
+  />
+  <ul>
+    <li *ngFor="let c of currentQuestion.choices">
+      <button (click)="answer(c)">{{ c }}</button>
+    </li>
+  </ul>
+  <button (click)="next()">Suivant</button>
+  <p>Score: {{ score }} / {{ questions.length }}</p>
+  <progress
+    [value]="((currentIndex + 1) / questions.length) * 100"
+    max="100"
+  ></progress>
+</div>
+<div *ngIf="showResult">
+  <h2>Résultat: {{ score }} / {{ questions.length }}</h2>
+  <p>{{ getFeedbackMessage() }}</p>
+  <button (click)="restart()">Rejouer</button>
+</div>

@@ -1,4 +1,4 @@
-// src/data/questionsMarvel.ts
+// src\data\marvelQuiz.ts
 import { QuizQuestion } from './types';
 
 export const marvelQuiz: QuizQuestion[] = [

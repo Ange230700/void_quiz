@@ -1,4 +1,4 @@
-// src/data/questionsMusique.ts
+// src\data\musicQuiz.ts
 import { QuizQuestion } from './types';
 
 export const musicQuiz: QuizQuestion[] = [

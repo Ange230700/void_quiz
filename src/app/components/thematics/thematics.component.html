@@ -1,0 +1,7 @@
+<!-- src\app\components\thematics\thematics.component.html -->
+
+<ul>
+  <li *ngFor="let t of topics">
+    <button (click)="selectTheme(t)">{{ t.name }}</button>
+  </li>
+</ul>
