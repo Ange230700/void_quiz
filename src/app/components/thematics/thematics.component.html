@@ -13,7 +13,14 @@
     <p-card *ngFor="let t of topics" header="{{ t.name }}" styleClass="h-full">
       <ng-template pTemplate="content">
         <p class="mb-4">{{ getDescription(t.themeData) }}</p>
-        <p-button label="Commencer →" (click)="selectTheme(t)"></p-button>
+        <p-button
+          label="Commencer →"
+          (click)="selectTheme(t)"
+          (keydown.enter)="selectTheme(t)"
+          (keydown.space)="selectTheme(t)"
+          (keyup.enter)="selectTheme(t)"
+          (keypress.enter)="selectTheme(t)"
+        />
       </ng-template>
     </p-card>
   </section>

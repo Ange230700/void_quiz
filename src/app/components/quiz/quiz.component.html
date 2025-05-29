@@ -1,25 +1,66 @@
 <!-- src\app\components\quiz\quiz.component.html -->
-<div *ngIf="!showResult">
+<div
+  *ngIf="!showResult"
+  @fadeIn
+  class="flex flex-1 flex-col items-center space-y-6 p-6"
+>
+  <div class="mb-2 flex w-full justify-between">
+    <span>Question {{ currentIndex + 1 }} / {{ questions.length }}</span>
+    <span
+      >{{
+        ((currentIndex + 1) / questions.length) * 100 | number: "1.0-0"
+      }}%</span
+    >
+    <p>Score: {{ score }} / {{ questions.length }}</p>
+    <p-progressBar
+      [value]="(timerValue / 20) * 100"
+      [showValue]="true"
+      styleClass="w-full mb-4"
+    />
+  </div>
   <h2>{{ currentQuestion.question }}</h2>
-  <img
+  <p-image
     *ngIf="currentQuestion.image"
     [src]="currentQuestion.image"
-    [alt]="currentQuestion.question"
+    [alt]="'Illustration – ' + currentQuestion.question"
+    width="50%"
   />
   <ul>
     <li *ngFor="let c of currentQuestion.choices">
-      <button (click)="answer(c)">{{ c }}</button>
+      <p-button
+        class="mb-2 w-full"
+        [label]="c"
+        (click)="answer(c)"
+        (keydown.enter)="answer(c)"
+        (keydown.space)="answer(c)"
+        [disabled]="!!selectedChoice"
+        [styleClass]="
+          selectedChoice === c
+            ? c === currentQuestion.answer
+              ? 'p-button-success'
+              : 'p-button-danger'
+            : ''
+        "
+      />
     </li>
   </ul>
-  <button (click)="next()">Suivant</button>
-  <p>Score: {{ score }} / {{ questions.length }}</p>
-  <progress
-    [value]="((currentIndex + 1) / questions.length) * 100"
-    max="100"
-  ></progress>
+  <p-button
+    label="Suivant →"
+    (click)="next()"
+    (keydown.enter)="next()"
+    (keydown.space)="next()"
+    [disabled]="!selectedChoice"
+    class="mt-4"
+  />
 </div>
 <div *ngIf="showResult">
   <h2>Résultat: {{ score }} / {{ questions.length }}</h2>
   <p>{{ getFeedbackMessage() }}</p>
-  <button (click)="restart()">Rejouer</button>
+  <p-button
+    label="Rejouer"
+    aria-label="Recommencer le quiz"
+    (click)="restart()"
+    (keydown.enter)="restart()"
+    (keydown.space)="restart()"
+  />
 </div>
