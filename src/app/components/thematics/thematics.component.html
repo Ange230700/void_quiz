@@ -1,7 +1,20 @@
 <!-- src\app\components\thematics\thematics.component.html -->
 
-<ul>
-  <li *ngFor="let t of topics">
-    <button (click)="selectTheme(t)">{{ t.name }}</button>
-  </li>
-</ul>
+<div class="flex flex-1 flex-col items-center space-y-6 p-6">
+  <h1 class="text-center text-3xl font-bold">
+    Choisissez votre thématique de quiz
+  </h1>
+  <p class="text-center">
+    Parcourez nos catégories et amusez-vous à répondre à des questions triées
+    par sujet !
+  </p>
+
+  <section class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <p-card *ngFor="let t of topics" header="{{ t.name }}" styleClass="h-full">
+      <ng-template pTemplate="content">
+        <p class="mb-4">{{ getDescription(t.themeData) }}</p>
+        <p-button label="Commencer →" (click)="selectTheme(t)"></p-button>
+      </ng-template>
+    </p-card>
+  </section>
+</div>
