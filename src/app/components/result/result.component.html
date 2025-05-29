@@ -1,6 +1,28 @@
 <!-- src\app\components\result\result.component.html -->
-<div class="result">
-  <h2>Résultat : {{ score }} / {{ total }}</h2>
-  <p>{{ message }}</p>
-  <button (click)="restart()">Rejouer</button>
-</div>
+<p-toast position="top-center" />
+<p-card>
+  <ng-template pTemplate="header">
+    <h2 class="text-center text-2xl font-bold">Résultat du Quiz</h2>
+  </ng-template>
+
+  <div class="space-y-4 p-4 text-center">
+    <h3 class="text-xl">{{ score }} / {{ total }}</h3>
+    <p-progressBar
+      [value]="percentage"
+      styleClass="w-full"
+      [style]="{ height: '20px' }"
+    ></p-progressBar>
+    <p class="text-lg font-medium">{{ message }}</p>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Rejouer"
+      icon="pi pi-refresh"
+      class="w-full"
+      (click)="restart()"
+    ></button>
+  </ng-template>
+</p-card>
