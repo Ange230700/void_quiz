@@ -10,7 +10,7 @@ import { QuizService } from '../../services/quiz.service';
 import { QuizQuestion } from '../../models/question.model';
 import { FeedbackMessages } from '../../models/feedback.model';
 import { Subject, interval, Subscription } from 'rxjs';
-import { take, takeUntil, finalize } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { ImageModule } from 'primeng/image';
 import { ButtonModule } from 'primeng/button';
@@ -57,6 +57,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   selectedChoice: string | null = null;
   score = 0;
   timerValue = 20;
+  answered = false;
   private timerSub?: Subscription;
 
   constructor(
@@ -92,8 +93,13 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   answer(choice: string): void {
-    if (this.selectedChoice) return;
+    if (this.answered) return; // only once
+    this.answered = true;
     this.selectedChoice = choice;
+
+    // cancel the countdown
+    this.timerSub?.unsubscribe();
+
     if (choice === this.currentQuestion.answer) {
       this.score++;
       this.messageService.add({
@@ -110,14 +116,14 @@ export class QuizComponent implements OnInit, OnDestroy {
         life: 3000,
       });
     }
-    this.stopTimer();
   }
 
   next(): void {
     if (this.currentIndex + 1 < this.totalQuestions) {
       this.currentIndex++;
+      // reset state
+      this.answered = false;
       this.selectedChoice = null;
-      this.resetTimer();
       this.startTimer();
     } else {
       // quiz is over ⇒ navigate to your standalone ResultComponent
@@ -154,17 +160,17 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   private startTimer(): void {
     this.timerValue = 20;
+    // make a fresh 20-second countdown
     this.timerSub = interval(1000)
-      .pipe(
-        take(20),
-        takeUntil(this.destroy$),
-        finalize(() => {
-          if (!this.selectedChoice) {
-            this.answer('');
+      .pipe(take(20))
+      .subscribe({
+        next: () => this.timerValue--,
+        complete: () => {
+          if (!this.answered) {
+            this.answer(''); // timeout → force “wrong answer”
           }
-        }),
-      )
-      .subscribe(() => this.timerValue--);
+        },
+      });
   }
 
   private stopTimer(): void {
@@ -176,7 +182,6 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.timerSub?.unsubscribe();
   }
 }

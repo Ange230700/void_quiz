@@ -32,10 +32,9 @@
       [options]="choiceOptions"
       [(ngModel)]="selectedChoice"
       (onChange)="answer($event.value)"
-      optionLabel="label"
       placeholder="Choisissez une réponse"
       class="w-full"
-      [disabled]="!!selectedChoice"
+      [disabled]="answered"
       aria-label="Choisissez votre réponse"
     ></p-select>
   </div>
@@ -57,7 +56,7 @@
     (click)="next()"
     (keydown.enter)="next()"
     (keydown.space)="next()"
-    [disabled]="selectedChoice === null"
+    [disabled]="!answered"
     class="mt-4"
   ></p-button>
 </div>
