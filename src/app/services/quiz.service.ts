@@ -1,6 +1,12 @@
 // src\app\services\quiz.service.ts
 import { Injectable } from '@angular/core';
 import * as popData from '../../data/popCultureQuiz';
+import * as musicData from '../../data/musicQuiz';
+import * as harryPotterData from '../../data/harryPotterQuiz';
+import * as videoGamesData from '../../data/videoGamesQuiz';
+import * as citationsData from '../../data/quoteQuiz';
+import * as marvelData from '../../data/marvelQuiz';
+import * as disneyData from '../../data/disneyQuiz';
 import { QuizQuestion } from '../models/question.model';
 import { FeedbackMessages } from '../models/feedback.model';
 import { feedbackMessagesByTopic } from '../../data/feedbackMessagesByTopic';
@@ -11,7 +17,12 @@ export class QuizService {
   private readonly topics = topicsList;
   private readonly questionsMap: Record<string, QuizQuestion[]> = {
     'films-et-series': popData.popCultureQuiz,
-    // ... import and map other quizzes: musicQuiz, harryPotterQuiz, etc.
+    musique: musicData.musicQuiz,
+    'harry-potter': harryPotterData.harryPotterQuiz,
+    'jeux-videos': videoGamesData.videoGamesQuiz,
+    citations: citationsData.quoteQuiz,
+    marvel: marvelData.marvelQuiz,
+    disney: disneyData.disneyQuiz,
   };
   private readonly feedbackMap = feedbackMessagesByTopic;
 

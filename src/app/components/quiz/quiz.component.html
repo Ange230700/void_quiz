@@ -1,6 +1,6 @@
 <!-- src\app\components\quiz\quiz.component.html -->
+<p-toast position="top-right" />
 <div
-  *ngIf="!showResult"
   @fadeIn
   class="flex flex-1 flex-col items-center justify-center space-y-6 p-6"
 >
@@ -62,7 +62,7 @@
   ></p-button>
 </div>
 
-<div *ngIf="showResult" class="p-6 text-center">
+<div class="p-6 text-center">
   <h2 class="mb-4 text-2xl font-bold">
     Résultat: {{ score }} / {{ totalQuestions }}
   </h2>

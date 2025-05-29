@@ -18,6 +18,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-quiz',
@@ -29,7 +31,9 @@ import { Select } from 'primeng/select';
     ProgressBarModule,
     FormsModule,
     Select,
+    ToastModule,
   ],
+  providers: [MessageService],
   templateUrl: './quiz.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -52,7 +56,6 @@ export class QuizComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   selectedChoice: string | null = null;
   score = 0;
-  showResult = false;
   timerValue = 20;
   private timerSub?: Subscription;
 
@@ -60,6 +63,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly quizService: QuizService,
     private readonly router: Router,
+    private readonly messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -92,6 +96,19 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.selectedChoice = choice;
     if (choice === this.currentQuestion.answer) {
       this.score++;
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Bonne réponse !',
+        detail: `Score: ${this.score}/${this.totalQuestions}`,
+        life: 1500,
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Mauvaise réponse',
+        detail: `La bonne réponse était : « ${this.currentQuestion.answer} »`,
+        life: 3000,
+      });
     }
     this.stopTimer();
   }
@@ -103,7 +120,14 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.resetTimer();
       this.startTimer();
     } else {
-      this.showResult = true;
+      // quiz is over ⇒ navigate to your standalone ResultComponent
+      this.router.navigate(['/result'], {
+        state: {
+          score: this.score,
+          total: this.totalQuestions,
+          message: this.getFeedbackMessage(),
+        },
+      });
     }
   }
 

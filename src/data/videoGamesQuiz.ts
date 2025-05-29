@@ -1,7 +1,7 @@
 // src\data\videoGamesQuiz.ts
 import { QuizQuestion } from './types';
 
-export const videoGamesQuizz: QuizQuestion[] = [
+export const videoGamesQuiz: QuizQuestion[] = [
   {
     question: 'Quel personnage principal apparaît dans The Legend of Zelda ?',
     choices: ['Mario', 'Zelda', 'Link', 'Ganondorf'],
