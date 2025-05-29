@@ -7,13 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-result',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="result">
-      <h2>Résultat : {{ score }} / {{ total }}</h2>
-      <p>{{ message }}</p>
-      <button (click)="restart()">Rejouer</button>
-    </div>
-  `,
+  templateUrl: './result.component.html',
 })
 export class ResultComponent {
   // You can pass these via router state or a service
