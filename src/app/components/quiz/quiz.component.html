@@ -2,7 +2,7 @@
 <div
   *ngIf="!showResult"
   @fadeIn
-  class="flex flex-1 flex-col items-center space-y-6 p-6"
+  class="flex flex-1 flex-col items-center justify-center space-y-6 p-6"
 >
   <div class="mb-2 flex w-full justify-between">
     <span>Question {{ currentIndex + 1 }} / {{ questions.length }}</span>
@@ -12,23 +12,22 @@
       }}%</span
     >
     <p>Score: {{ score }} / {{ questions.length }}</p>
-    <p-progressBar
-      [value]="(timerValue / 20) * 100"
-      [showValue]="true"
-      styleClass="w-full mb-4"
-    />
   </div>
+  <p-progressBar
+    [value]="(timerValue / 20) * 100"
+    [showValue]="true"
+    styleClass="w-full mb-4"
+  />
   <h2>{{ currentQuestion.question }}</h2>
   <p-image
     *ngIf="currentQuestion.image"
     [src]="currentQuestion.image"
     [alt]="'Illustration – ' + currentQuestion.question"
-    width="50%"
+    width="500"
   />
-  <ul>
-    <li *ngFor="let c of currentQuestion.choices">
+  <ul class="grid grid-cols-2 gap-8">
+    <li *ngFor="let c of currentQuestion.choices" class="w-full">
       <p-button
-        class="mb-2 w-full"
         [label]="c"
         (click)="answer(c)"
         (keydown.enter)="answer(c)"
@@ -37,9 +36,9 @@
         [styleClass]="
           selectedChoice === c
             ? c === currentQuestion.answer
-              ? 'p-button-success'
-              : 'p-button-danger'
-            : ''
+              ? 'p-button-success w-full'
+              : 'p-button-danger w-full'
+            : 'w-full'
         "
       />
     </li>
