@@ -10,4 +10,5 @@ export const topicsList: Topic[] = [
   { name: 'Citations', themeData: 'citations' },
   { name: 'Marvel', themeData: 'marvel' },
   { name: 'Disney', themeData: 'disney' },
+  { name: 'Histoire', themeData: 'histoire' },
 ];

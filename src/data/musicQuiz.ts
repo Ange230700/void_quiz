@@ -16,7 +16,7 @@ export const musicQuiz: QuizQuestion[] = [
     choices: ['The Beatles', 'The Rolling Stones', 'The Who', 'The Kinks'],
     answer: 'The Rolling Stones',
     image:
-      'https://images.pexels.com/photos/811838/pexels-photo-811838.jpeg?auto=compress&cs=tinysrgb&w=600https://images.pexels.com/photos/811838/pexels-photo-811838.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/811838/pexels-photo-811838.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     question:

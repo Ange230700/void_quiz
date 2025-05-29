@@ -7,6 +7,7 @@ import * as videoGamesData from '../../data/videoGamesQuiz';
 import * as citationsData from '../../data/quoteQuiz';
 import * as marvelData from '../../data/marvelQuiz';
 import * as disneyData from '../../data/disneyQuiz';
+import * as historyData from '../../data/historyQuiz';
 import { QuizQuestion } from '../models/question.model';
 import { FeedbackMessages } from '../models/feedback.model';
 import { feedbackMessagesByTopic } from '../../data/feedbackMessagesByTopic';
@@ -23,6 +24,7 @@ export class QuizService {
     citations: citationsData.quoteQuiz,
     marvel: marvelData.marvelQuiz,
     disney: disneyData.disneyQuiz,
+    histoire: historyData.historyQuiz,
   };
   private readonly feedbackMap = feedbackMessagesByTopic;
 

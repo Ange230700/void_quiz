@@ -41,7 +41,6 @@ export const disneyQuiz: QuizQuestion[] = [
     choices: [
       'Ils servent à faire grandir Alice',
       "Ils servent à transformer le visage d'Alice",
-      "Ils servent à transformer le visage d'Alice",
       'Ils servent à rétrécir Alice',
     ],
     answer: 'Il servent à faire grandir Alice',

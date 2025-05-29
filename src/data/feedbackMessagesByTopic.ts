@@ -25,7 +25,7 @@ export const feedbackMessagesByTopic: Record<string, FeedbackMessages> = {
   },
   'jeux-videos': {
     perfect: "Ok, j'avoue, t'es un super giga boss !",
-    high: 'Ok, c"est pas mal !',
+    high: "Ok, c'est pas mal !",
     medium: "C'est déjà bien mais tu peux faire mieux !",
     low: "Fais un effort, s'il te plaît !",
     fail: 'Tu connais ces jeux vidéo ?!',
@@ -50,5 +50,13 @@ export const feedbackMessagesByTopic: Record<string, FeedbackMessages> = {
     medium: "C'est déjà bien mais tu peux faire mieux !",
     low: "C'est pas mal, mais tu peux faire mieux !",
     fail: 'Tu connais les films de Disney ?!',
+  },
+  histoire: {
+    perfect: "Incroyable, tu maîtrises parfaitement l'histoire !",
+    high: 'Bravo, tes connaissances sont solides !',
+    medium:
+      'Pas mal, mais un petit rafraîchissement d’Histoire ne ferait pas de mal !',
+    low: 'Il faudrait réviser un peu plus !',
+    fail: "On dirait que l'Histoire n'est pas ton fort ?!",
   },
 };

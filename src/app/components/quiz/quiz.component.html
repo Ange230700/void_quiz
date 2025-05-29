@@ -57,21 +57,7 @@
     (click)="next()"
     (keydown.enter)="next()"
     (keydown.space)="next()"
-    [disabled]="!selectedChoice"
+    [disabled]="selectedChoice === null"
     class="mt-4"
   ></p-button>
-</div>
-
-<div class="p-6 text-center">
-  <h2 class="mb-4 text-2xl font-bold">
-    Résultat: {{ score }} / {{ totalQuestions }}
-  </h2>
-  <p class="mb-6">{{ getFeedbackMessage() }}</p>
-  <p-button
-    label="Rejouer"
-    aria-label="Recommencer le quiz"
-    (click)="restart()"
-    (keydown.enter)="restart()"
-    (keydown.space)="restart()"
-  />
 </div>
