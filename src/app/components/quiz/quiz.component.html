@@ -13,8 +13,9 @@
     >
     <p>Score: {{ score }} / {{ questions.length }}</p>
   </div>
-  <p-progressBar
-    [value]="(timerValue / 20) * 100"
+  <p-progressbar
+    mode="determinate"
+    [value]="((currentIndex + 1) / questions.length) * 100"
     [showValue]="true"
     styleClass="w-full mb-4"
   />

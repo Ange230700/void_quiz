@@ -16,7 +16,6 @@ import { trigger, style, animate, transition } from '@angular/animations';
   standalone: true,
   imports: [CommonModule, ImageModule, ButtonModule, ProgressBarModule],
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.css',
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
