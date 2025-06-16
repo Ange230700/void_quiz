@@ -1,59 +1,197 @@
+<!-- README.md -->
+
 # VoidQuiz
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+![Project Logo](public/logo.png) <!-- Replace with your logo if you have one -->
 
-## Development server
+**VoidQuiz** is a themable quiz web app built with Angular, PrimeNG, and Tailwind CSS.
+It features a variety of pop culture quiz topics (films, music, Marvel, Disney, history, and more), instant feedback, and a clean, mobile-friendly interface.
 
-To start a local development server, run:
+---
+
+## Table of Contents
+
+<!-- * [Demo](#demo) -->
+
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Running the Project](#running-the-project)
+- [Project Structure](#project-structure)
+- [API Documentation](#api-documentation)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Environment Variables](#environment-variables)
+  <!-- * [Contributing](#contributing) -->
+  <!-- * [License](#license) -->
+  <!-- * [Acknowledgements](#acknowledgements) -->
+- [Contact](#contact)
+
+<!-- ---
+
+## Demo
+
+Check out a live demo: **coming soon!**
+Or run locally at [http://localhost:4200](http://localhost:4200).
+
+![Screenshot](public/screenshot.png) Add or replace with your screenshot -->
+
+---
+
+## Tech Stack
+
+**Frontend:**
+
+- Angular 19
+- PrimeNG
+- Tailwind CSS
+
+**Backend:**
+
+- None (all quiz data is local to the frontend)
+
+**Database:**
+
+- None (data is loaded from static TypeScript files)
+
+**Tools:**
+
+- Angular CLI
+- ESLint, Prettier, Husky
+- Karma/Jasmine (unit testing)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (>=20.x)
+- npm
+
+### Installation
 
 ```bash
+git clone https://github.com/Ange230700/void_quiz.git
+cd void_quiz
+npm install
+```
+
+---
+
+## Running the Project
+
+Start the frontend:
+
+```bash
+npm start
+# or
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200) to use the app.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Project Structure
 
-```bash
-ng generate component component-name
+```
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── thematics/       # Thematic selection page
+│   │   │   ├── quiz/            # Quiz logic & UI
+│   │   │   └── result/          # Result and feedback UI
+│   │   ├── models/              # TypeScript interfaces for quiz data
+│   │   ├── services/            # QuizService (loads questions, feedback)
+│   │   ├── app.component.ts     # Main app shell
+│   │   └── app.routes.ts        # Angular routes
+│   ├── data/                    # Quiz data for each topic/theme
+│   ├── styles.css               # Tailwind & PrimeNG global styles
+│   └── index.html               # App entrypoint
+├── public/                      # Static assets (logo, favicon, screenshots)
+├── package.json
+├── angular.json
+├── tsconfig.json
+└── ...
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
+
+## API Documentation
+
+No backend API required.
+Quiz questions and topics are loaded from static TypeScript modules in `src/data/`.
+If you want to provide quiz data from a server, you can adapt the service layer to fetch from a REST API.
+
+---
+
+## Testing
+
+To run unit tests:
 
 ```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+npm test
+# or
 ng test
 ```
 
-## Running end-to-end tests
+Angular uses Karma and Jasmine for unit testing by default.
 
-For end-to-end (e2e) testing, run:
+---
+
+## Deployment
+
+To build the production bundle:
 
 ```bash
-ng e2e
+npm run build
+# or
+ng build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Deploy the contents of `dist/void_quiz/` to your favorite static hosting (Vercel, Netlify, GitHub Pages, etc.).
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Environment Variables
+
+VoidQuiz does not require any environment variables by default.
+If you add an API or other features, document your `.env` keys here.
+
+<!-- ---
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add feature'`)
+4. Push the branch (`git push origin feature/new-feature`)
+5. Create a Pull Request
+
+Code formatting and linting are enforced via Prettier, ESLint, and Husky hooks. -->
+
+<!-- ---
+
+## License
+
+MIT License -->
+
+<!-- ---
+
+## Acknowledgements
+
+Special thanks to the following libraries, frameworks, and contributors:
+
+* [Angular](https://angular.io/)
+* [PrimeNG](https://primeng.org/)
+* [Tailwind CSS](https://tailwindcss.com/) -->
+
+---
+
+## Contact
+
+Ange KOUAKOU – [kouakouangeericstephane@gmail.com](mailto:kouakouangeericstephane@gmail.com)
+
+[Project Link](https://github.com/Ange230700/void_quiz)
